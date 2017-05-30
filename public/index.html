@@ -11,30 +11,27 @@
     </head>
     <body ng-controller="mainController as ctrl">
 
-        <form ng-submit="ctrl.login(userPass)">
-     <input type="text" ng-model="userPass.username" placeholder="username"/>
-     <input type="password" ng-model="userPass.password" placeholder="password"/>
-     <input type="submit"/>
-        </form>
+        <!-- Partials -->
+        <ng-view></ng-view>
+        <div ng-if="ctrl.selected_partial=='index'" ng-include="'partials/index-partial.html'"></div>
 
-        <a href="#" ng-click="ctrl.logout()">Log Out</a>
+        <div ng-if="ctrl.selected_partial=='signup'" ng-include="'partials/user-signup.html'"></div>
 
-        <p>Logged in username: {{ ctrl.user.username }} </p>
+        <div ng-if="ctrl.selected_partial=='signin'" ng-include="'partials/user-signin.html'"></div>
 
-        <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
+        <div ng-if="ctrl.selected_partial=='userindex'" ng-include="'partials/user-index.html'"></div>
 
-        <div>{{ctrl.error}}</div>
+        <div ng-if="ctrl.selected_partial=='restaurants'" ng-include="'partials/restaurants.html'"></div>
 
-        <div ng-repeat="user in ctrl.users">
-            <h1>{{user.username}}</h1>
-        </div>
+        <div ng-if="ctrl.selected_partial=='profile'" ng-include="'partials/profile.html'"></div>
+
+        <div ng-if="ctrl.selected_partial=='restaurantshowpage'" ng-include="'partials/restaurant-show-page.html'"></div>
 
 
 
 
-        <div ng-repeat="restaurant in ctrl.restaurants">
-            {{restaurant.name}}
+        <!-- End Partials -->
 
-        </div>
+
     </body>
 </html>

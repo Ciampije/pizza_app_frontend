@@ -1,0 +1,18 @@
+
+
+{{ctrl.specificRestaurant.name}}
+
+{{ctrl.specificRestaurant.address}}
+<h5>Reviews:</h5>
+<h6>Content</h6>
+{{ctrl.specificRestaurant.reviews[1].content}}<br/>
+<h6>Posted on:</h6>
+{{ctrl.specificRestaurant.reviews[1].created_at}}<br/>
+
+<form ng-submit="ctrl.addReview('hi')">
+
+    <input ng-model="ctrl.review" type="textarea">
+
+    <input type="submit" value="Submit">
+
+</form>
