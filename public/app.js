@@ -67,7 +67,7 @@ app.controller('mainController', ['$http', function($http){
     this.getRestaurants = function() {
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/users/restaurants'
+            url: http: DB_URL + '/users/restaurants'
         }).then(function(result){
             console.log(result);
             controller.restaurants = result.data;
@@ -78,7 +78,7 @@ app.controller('mainController', ['$http', function($http){
         this.restaurant_id = id;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/users/restaurants/' + id
+            url: DB_URL + '/users/restaurants/' + id
         }).then(function(result){
             this.specificRestaurant = result.data
             console.log(controller.specificRestaurant);
@@ -89,7 +89,7 @@ app.controller('mainController', ['$http', function($http){
     this.addReview = function(restaurant_id){
     $http({
         method:"POST",
-        url:'http://localhost:3000/users/restaurants/' + restaurant_id + '/reviews',
+        url:http: DB_URL + '/users/restaurants/' + restaurant_id + '/reviews',
         data: this.createreview,
         headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
