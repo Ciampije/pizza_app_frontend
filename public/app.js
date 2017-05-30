@@ -2,8 +2,15 @@ console.log('app.js');
 
 var app = angular.module('MyApp', []);
 
+if(window.location.origin == "http://localhost:8000") {
+  DB_URL = "http://localhost:3000";
+}
+else {
+  DB_URL = "https://pizzappapi.herokuapp.com";
+}
+
 app.controller('mainController', ['$http', function($http){
-    this.url = 'http://localhost:3000';
+    this.url = DB_URL;
     this.user = {};
     this.message = "angular works!";
     this.selected_partial = 'index';
@@ -18,7 +25,7 @@ app.controller('mainController', ['$http', function($http){
         console.log(userPass);
         $http({
             method: 'POST',
-            url: this.url + '/users/login',
+            url: DB_URL + '/users/login',
             data: { user: { username: userPass.username, password: userPass.password }},
         }).then(function(result) {
             console.log(result);
@@ -36,7 +43,7 @@ app.controller('mainController', ['$http', function($http){
 
     this.getUsers = function() {
         $http({
-            url: this.url + '/users',
+            url: DB_URL + '/users',
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
