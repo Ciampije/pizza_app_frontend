@@ -67,7 +67,7 @@ app.controller('mainController', ['$http', function($http){
     this.getRestaurants = function() {
         $http({
             method: 'GET',
-            url: http: DB_URL + '/users/restaurants'
+            url: DB_URL + '/users/restaurants'
         }).then(function(result){
             console.log(result);
             controller.restaurants = result.data;
