@@ -98,14 +98,34 @@ app.controller('mainController', ['$http', function($http){
       //this also might be a set to the userid so we probably can get rid of one or the other
             controller.id = response.data.id;
             console.log(response);
+            controller.getAllReviews(restaurant_id)
         },
       function(response) {//failure
         console.log(response);
       });
 };
 
-    this.getAllTheReviews = function(){
-        controller.getRestaurants();
+    this.getAllReviews = function(id) {
+    $http({
+        method: 'GET',
+        url: DB_URL + '/users/restaurants/' + id + '/reviews',
+    }).then(function(result){
+        console.log(result);
+        controller.reviews = result.data
+        console.log("===============");
+        console.log(controller.reviews);
+        controller.selected_partial = 'restaurantshowpage'
+    });
+    };
+
+    this.removeReview = function(restaurant_id, review_id){
+        $http({
+            method: 'DELETE',
+            url: DB_URL + '/users/restaurants/' + restaurant_id + '/reviews/' + review_id,
+        }).then(function(result){
+            console.log('deleting');
+            controller.getAllReviews();
+        })
     }
 
     this.getRestaurants();

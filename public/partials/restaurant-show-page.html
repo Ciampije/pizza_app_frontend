@@ -5,21 +5,25 @@
 {{ctrl.specificRestaurant.address}}
 <h5>Reviews:</h5>
 
-<h6>Content</h6>
+
 
     <div ng-repeat ="restaurant in ctrl.specificRestaurant.reviews">
-        {{restaurant.content}}
+
+            <h6>Content</h6>
+            {{restaurant.content}}
+            {{restaurant.id}}
+        <button ng-click="ctrl.removeReview(ctrl.specificRestaurant.id,restaurant.id)">Delete
+        </button>
+
     </div>
 
-{{ctrl.specificRestaurant.reviews[1].content}}<br/>
-<h6>Posted on:</h6>
-{{ctrl.specificRestaurant.reviews[1].created_at}}<br/>
+
 
 <form ng-submit="ctrl.addReview(ctrl.specificRestaurant.id)">
 
     <input type="text" ng-model="ctrl.createreview.content">
 
-    <input ng-click="reloadPage()" type="submit" value="Submit">
+    <input ng-click="ctrl.getAllReviews()" type="submit" value="Submit">
 
 
 </form>
