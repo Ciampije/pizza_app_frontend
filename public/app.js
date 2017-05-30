@@ -89,7 +89,7 @@ app.controller('mainController', ['$http', function($http){
     this.addReview = function(restaurant_id){
     $http({
         method:"POST",
-        url:http: DB_URL + '/users/restaurants/' + restaurant_id + '/reviews',
+        url: DB_URL + '/users/restaurants/' + restaurant_id + '/reviews',
         data: this.createreview,
         headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
