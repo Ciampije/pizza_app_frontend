@@ -8,6 +8,10 @@ app.controller('mainController', ['$http', function($http){
     this.message = "angular works!";
     this.selected_partial = 'index';
     this.review = ""
+    this.reloadPage = function(){
+        $window.location.reload();
+    }
+
     var controller = this;
 
     this.login = function(userPass) {
@@ -75,12 +79,11 @@ app.controller('mainController', ['$http', function($http){
         }.bind(this));
     };
 
-    this.addReview = function(review){
-        console.log('hi');
+    this.addReview = function(restaurant_id){
     $http({
         method:"POST",
-        url:'http://localhost:3000/users/restaurants/2/reviews',
-        data: review.to_json,
+        url:'http://localhost:3000/users/restaurants/' + restaurant_id + '/reviews',
+        data: this.createreview,
         headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
         }
@@ -93,6 +96,10 @@ app.controller('mainController', ['$http', function($http){
         console.log(response);
       });
 };
+
+    this.getAllTheReviews = function(){
+        controller.getRestaurants();
+    }
 
     this.getRestaurants();
 }]);

@@ -4,15 +4,22 @@
 
 {{ctrl.specificRestaurant.address}}
 <h5>Reviews:</h5>
+
 <h6>Content</h6>
+
+    <div ng-repeat ="restaurant in ctrl.specificRestaurant.reviews">
+        {{restaurant.content}}
+    </div>
+
 {{ctrl.specificRestaurant.reviews[1].content}}<br/>
 <h6>Posted on:</h6>
 {{ctrl.specificRestaurant.reviews[1].created_at}}<br/>
 
-<form ng-submit="ctrl.addReview('hi')">
+<form ng-submit="ctrl.addReview(ctrl.specificRestaurant.id)">
 
-    <input ng-model="ctrl.review" type="textarea">
+    <input type="text" ng-model="ctrl.createreview.content">
 
-    <input type="submit" value="Submit">
+    <input ng-click="reloadPage()" type="submit" value="Submit">
+
 
 </form>
