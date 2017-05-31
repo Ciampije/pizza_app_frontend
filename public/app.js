@@ -28,6 +28,7 @@ app.controller('mainController', ['$http', function($http){
             url: DB_URL + '/users/login',
             data: { user: { username: userPass.username, password: userPass.password }},
         }).then(function(result) {
+            this.getRestaurants();
             console.log(result);
             if (result.data.status == 401) {
                 this.error = "Unauthorized";
@@ -68,7 +69,9 @@ app.controller('mainController', ['$http', function($http){
         $http({
             method: 'GET',
             url: DB_URL + '/users/restaurants'
-
+            headers: {
+                Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            }
         }).then(function(result){
             console.log(result);
             controller.restaurants = result.data;
@@ -129,5 +132,5 @@ app.controller('mainController', ['$http', function($http){
         })
     }
 
-    this.getRestaurants();
+
 }]);
