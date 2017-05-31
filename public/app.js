@@ -68,7 +68,7 @@ app.controller('mainController', ['$http', function($http){
     this.getRestaurants = function() {
         $http({
             method: 'GET',
-            url: 'https://pizzaappapi.herokuapp.com/users/restaurants',
+            url: DB_URL + 'users/restaurants',
             headers: {
                 Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
             }
