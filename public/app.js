@@ -25,7 +25,7 @@ app.controller('mainController', ['$http', function($http){
         console.log(userPass);
         $http({
             method: 'POST',
-            url: DB_URL + '/users/login',
+            url: 'https://pizzaappapi.herokuapp.com/users/login',
             data: { user: { username: userPass.username, password: userPass.password }},
         }).then(function(result) {
             this.getRestaurants();
