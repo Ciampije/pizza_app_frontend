@@ -6,7 +6,7 @@ if(window.location.origin == "http://localhost:8000") {
   DB_URL = "http://localhost:3000";
 }
 else {
-  DB_URL = "https://pizzaappapi.herokuapp.com";
+  DB_URL = "https://pizzappapi.herokuapp.com";
 }
 
 app.controller('mainController', ['$http', function($http){
@@ -25,7 +25,7 @@ app.controller('mainController', ['$http', function($http){
         console.log(userPass);
         $http({
             method: 'POST',
-            url: 'https://pizzaappapi.herokuapp.com/users/login',
+            url: DB_URL + '/users/login',
             data: { user: { username: userPass.username, password: userPass.password }},
         }).then(function(result) {
             this.getRestaurants();
