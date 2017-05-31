@@ -3,6 +3,9 @@
 {{ctrl.specificRestaurant.name}}
 
 {{ctrl.specificRestaurant.address}}
+
+
+
 <h5>Reviews:</h5>
 
 
@@ -16,14 +19,3 @@
         </button>
 
     </div>
-
-
-
-<form ng-submit="ctrl.addReview(ctrl.specificRestaurant.id)">
-
-    <input type="text" ng-model="ctrl.createreview.content">
-
-    <input ng-click="ctrl.getAllReviews()" type="submit" value="Submit">
-
-
-</form>
