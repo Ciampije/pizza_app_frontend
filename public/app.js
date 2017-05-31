@@ -132,7 +132,7 @@ app.controller('mainController', ['$http', function($http){
         })
     }
 
-    getRestaurants();
+    this.getRestaurants();
 
 
 }]);
