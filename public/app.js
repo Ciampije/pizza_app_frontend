@@ -42,6 +42,27 @@ app.controller('mainController', ['$http', function($http){
 
     };
 
+    this.signup = function(userPass) {
+        console.log(userPass);
+        $http({
+            method: 'POST',
+            url: DB_URL + '/users',
+            data: { user: { username: userPass.username, password: userPass.password }},
+        }).then(function(result) {
+            this.getRestaurants();
+            console.log(result);
+            if (result.data.status == 401) {
+                this.error = "Unauthorized";
+            } else {
+                this.selected_partial = 'userindex';
+
+            }
+            this.user = result.data.user;
+            localStorage.setItem('token', JSON.stringify(result.data.token));
+        }.bind(this));
+
+    };
+
     this.getUsers = function() {
         $http({
             url: DB_URL + '/users',
@@ -68,10 +89,7 @@ app.controller('mainController', ['$http', function($http){
     this.getRestaurants = function() {
         $http({
             method: 'GET',
-            url: DB_URL + 'users/restaurants',
-            headers: {
-                Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-            }
+            url: DB_URL + '/users/restaurants'
         }).then(function(result){
             console.log(result);
             controller.restaurants = result.data;
