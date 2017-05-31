@@ -67,10 +67,8 @@ app.controller('mainController', ['$http', function($http){
     this.getRestaurants = function() {
         $http({
             method: 'GET',
-            url: DB_URL + '/users/restaurants',
-            headers: {
-                Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-            }
+            url: DB_URL + '/users/restaurants'
+
         }).then(function(result){
             console.log(result);
             controller.restaurants = result.data;
