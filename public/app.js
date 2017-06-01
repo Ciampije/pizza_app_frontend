@@ -37,6 +37,7 @@ app.controller('mainController', ['$http', function($http){
 
             }
             this.user = result.data.user;
+            console.log(this.user);
             localStorage.setItem('token', JSON.stringify(result.data.token));
         }.bind(this));
 
@@ -54,10 +55,11 @@ app.controller('mainController', ['$http', function($http){
             if (result.data.status == 401) {
                 this.error = "Unauthorized";
             } else {
-                this.selected_partial = 'userindex';
+                this.selected_partial = 'index';
 
             }
             this.user = result.data.user;
+            console.log(this.user);
             localStorage.setItem('token', JSON.stringify(result.data.token));
         }.bind(this));
 
@@ -108,11 +110,16 @@ app.controller('mainController', ['$http', function($http){
         }.bind(this));
     };
 
-    this.addReview = function(restaurant_id){
+    this.addReview = function(restaurant_id,userid){
+        console.log(userid);
     $http({
         method:"POST",
         url: DB_URL + '/users/restaurants/' + restaurant_id + '/reviews',
-        data: this.createreview,
+        data: {
+            content: controller.createreview.content,
+            restaurant_id: restaurant_id,
+            user_id: userid
+        },
         headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
         }

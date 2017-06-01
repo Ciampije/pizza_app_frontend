@@ -1,4 +1,4 @@
-
+<a href="#" ng-click="ctrl.logout()">Log Out</a>
 
 {{ctrl.specificRestaurant.name}}
 
@@ -15,7 +15,19 @@
             <h6>Content</h6>
             {{restaurant.content}}
             {{restaurant.id}}
-        <button ng-click="ctrl.removeReview(ctrl.specificRestaurant.id,restaurant.id)">Delete
+
+        <button ng-if="restaurant.user_id == ctrl.user.id"  ng-click="ctrl.removeReview(ctrl.specificRestaurant.id,restaurant.id)">Delete
         </button>
 
     </div>
+
+
+
+
+    <form ng-submit="ctrl.addReview(ctrl.specificRestaurant.id,ctrl.user.id)">
+
+        <input type="text" ng-model="ctrl.createreview.content">
+        <input ng-click="ctrl.getAllReviews();ctrl.getUsers();ctrl.getRestaurants()" type="submit" value="Submit">
+
+
+    </form>
