@@ -26,11 +26,6 @@
      <a ng-click="ctrl.selected_partial = 'userindex'" href="/">
        <img class="logo" src="https://www.freelogoservices.com/api/main/images/1j+ojl1FOMkX9WypfBe43D6kjPGIpRVJkBnJwXs1M3EMoAJtlCkrgvBu9fg..." class="navbar-brand">
      </a>
-     <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-       <span class="icon-bar"></span>
-       <span class="icon-bar"></span>
-       <span class="icon-bar"></span>
-     </button>
      <div class="collapse navbar-collapse navHeaderCollapse">
        <ul class ="nav navbar-nav navbar-right">
          <li><a ng-click="ctrl.logout()">Log Out</a></li>
@@ -56,6 +51,9 @@
         <div ng-if="ctrl.selected_partial=='restaurants'" ng-include="'partials/restaurants.html'"></div>
 
         <div ng-if="ctrl.selected_partial=='profile'" ng-include="'partials/profile.html'"></div>
+
+        <div ng-if="ctrl.selected_partial=='about'" ng-include="'partials/about.html'"></div>
+
 
         <div ng-if="ctrl.selected_partial=='restaurantshowpage'" ng-include="'partials/restaurant-show-page.html'"></div>
 
