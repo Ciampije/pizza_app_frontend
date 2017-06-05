@@ -1,52 +1,61 @@
-<a href="#" ng-click="ctrl.logout()">Log Out</a>
+<div class="addreviewbox">
 
-{{ctrl.specificRestaurant.name}}
+    <h1>{{ctrl.specificRestaurant.name}}</h1>
 
-{{ctrl.specificRestaurant.address}}
+    <h3>{{ctrl.specificRestaurant.avgstars}}/5 Stars</h3>
 
-{{ctrl.specificRestaurant.avgstars}}/5
 
-<h3>Add a review!</h3>
+    <img src="{{ctrl.specificRestaurant.img}}" alt="">
 
-<fieldset class="rating">
-<input type="radio" ng-model="ctrl.createreview.stars" id="star5" name="rating" value=5 /><label class = "full" for="star5"></label>
-<!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half"></label> -->
-<input type="radio" ng-model="ctrl.createreview.stars" id="star4" name="rating" value=4 /><label class = "full" for="star4"></label>
-<!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half"></label> -->
-<input type="radio" ng-model="ctrl.createreview.stars" id="star3" name="rating" value=3 /><label class = "full" for="star3"></label>
-<!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half"></label> -->
-<input type="radio" ng-model="ctrl.createreview.stars" id="star2" name="rating" value=2 /><label class = "full" for="star2"></label>
-<!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half"></label> -->
-<input type="radio" ng-model="ctrl.createreview.stars" id="star1" name="rating" value=1 /><label class = "full" for="star1"></label>
-<!-- <input type="radio" ng-model="ctrl.createreview.stars" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf"></label> -->
-</fieldset>
+
+    <!-- {{ctrl.specificRestaurant.address}} -->
 
 
 
-    <form ng-submit="ctrl.addReview(ctrl.specificRestaurant.id,ctrl.user.id)">
+    <h3>Add a review!</h3>
 
-        <input type="text" ng-model="ctrl.createreview.content">
-        <input type="submit" value="Submit">
-
-
-    </form>
+    <div class="allthestars">
+        <fieldset class="rating">
+        <input type="radio" ng-model="ctrl.createreview.stars" id="star5" name="rating" value=5 /><label class = "full" for="star5"></label>
+        <!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half"></label> -->
+        <input type="radio" ng-model="ctrl.createreview.stars" id="star4" name="rating" value=4 /><label class = "full" for="star4"></label>
+        <!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half"></label> -->
+        <input type="radio" ng-model="ctrl.createreview.stars" id="star3" name="rating" value=3 /><label class = "full" for="star3"></label>
+        <!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half"></label> -->
+        <input type="radio" ng-model="ctrl.createreview.stars" id="star2" name="rating" value=2 /><label class = "full" for="star2"></label>
+        <!-- <input type="radio" ng-model="ctrl.createreview.stars" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half"></label> -->
+        <input type="radio" ng-model="ctrl.createreview.stars" id="star1" name="rating" value=1 /><label class = "full" for="star1"></label>
+        <!-- <input type="radio" ng-model="ctrl.createreview.stars" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf"></label> -->
+        </fieldset>
+    </div>
 
 
 
 
 
+        <form ng-submit="ctrl.addReview(ctrl.specificRestaurant.id,ctrl.user.id)">
 
-<h5>Reviews:</h5>
+            <input type="text" ng-model="ctrl.createreview.content">
+            <input type="submit" value="Submit">
+
+        </form>
+</div>
+
+
 
 
 
     <div ng-repeat ="restaurant in ctrl.specificRestaurant.reviews">
 
-            <h6>Content</h6>
-            {{restaurant.content}} <br/>
-            {{restaurant.stars}} stars <br/>
+        <div class="reviewbox">
+
+            <h4 class="starrating">{{restaurant.stars}} stars </h4><br/>
+
+            <h4>{{restaurant.content}}</h4> <br/>
 
         <button ng-if="restaurant.user_id == ctrl.user.id"  ng-click="ctrl.removeReview(ctrl.specificRestaurant.id,restaurant.id)">Delete
         </button>
+
+        </div>
 
     </div>

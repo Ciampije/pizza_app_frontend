@@ -17,6 +17,7 @@ app.controller('mainController', ['$http', function($http){
     this.review = ""
     this.allTheStars = 0;
     this.rating = 0;
+    this.navshow = false;
     this.reloadPage = function(){
         $window.location.reload();
     }
@@ -41,6 +42,7 @@ app.controller('mainController', ['$http', function($http){
             this.user = result.data.user;
             console.log(this.user);
             localStorage.setItem('token', JSON.stringify(result.data.token));
+            controller.navshow = true;
         }.bind(this));
 
     };

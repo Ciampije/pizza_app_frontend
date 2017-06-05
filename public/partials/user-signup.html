@@ -1,17 +1,23 @@
-<form ng-submit="ctrl.signup(userPass)">
-<input type="text" ng-model="userPass.username" placeholder="username"/>
-<input type="password" ng-model="userPass.password" placeholder="password"/>
-<input type="submit"/>
-</form>
+<div class="signinbox">
 
-<a href="#" ng-click="ctrl.logout()">Log Out</a>
+    <form ng-submit="ctrl.signup(userPass)">
+    <input type="text" ng-model="userPass.username" placeholder="username"/>
+    <input type="password" ng-model="userPass.password" placeholder="password"/>
+    <input type="submit"/>
+    </form>
 
-<p>Logged in username: {{ ctrl.user.username }} </p>
+</div>
 
-<h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
+
+
+<!-- <a href="#" ng-click="ctrl.logout()">Log Out</a> -->
+
+<!-- <p>Logged in username: {{ ctrl.user.username }} </p>
+
+<h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4> -->
 
 <div>{{ctrl.error}}</div>
 
-<div ng-repeat="user in ctrl.users">
+<!-- <div ng-repeat="user in ctrl.users">
     <h1>{{user.username}}</h1>
-</div>
+</div> -->

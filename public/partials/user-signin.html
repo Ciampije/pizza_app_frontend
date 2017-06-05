@@ -1,9 +1,14 @@
-<form ng-submit="ctrl.login(userPass)">
-<input type="text" ng-model="userPass.username" placeholder="username"/>
-<input type="password" ng-model="userPass.password" placeholder="password"/>
-<input type="submit"/>
-</form>
+<div class="signinbox">
 
-<a href="#" ng-click="ctrl.logout()">Log Out</a>
+    <form ng-submit="ctrl.login(userPass)">
+    <input type="text" ng-model="userPass.username" placeholder="username"/>
+    <input type="password" ng-model="userPass.password" placeholder="password"/>
+    <input type="submit"/>
+    </form>
 
-<div>{{ctrl.error}}</div>
+    <!-- <a href="#" ng-click="ctrl.logout()">Log Out</a> -->
+
+    <div>{{ctrl.error}}</div>
+
+
+</div>

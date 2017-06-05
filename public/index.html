@@ -15,15 +15,15 @@
 
         <link rel="stylesheet" href="main.css">
 
-        
+
         <title></title>
     </head>
     <body ng-controller="mainController as ctrl">
 
         <!-- Main nav starts -->
- <div class="navbar navbar-inverse navbar-static-top">
+ <div ng-if="ctrl.navshow == true" class="navbar navbar-inverse navbar-static-top">
    <div class="container">
-     <a ng-click="ctrl.getSports()" href="/">
+     <a ng-click="ctrl.selected_partial = 'userindex'" href="/">
        <img class="logo" src="https://www.freelogoservices.com/api/main/images/1j+ojl1FOMkX9WypfBe43D6kjPGIpRVJkBnJwXs1M3EMoAJtlCkrgvBu9fg..." class="navbar-brand">
      </a>
      <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
@@ -33,7 +33,9 @@
      </button>
      <div class="collapse navbar-collapse navHeaderCollapse">
        <ul class ="nav navbar-nav navbar-right">
-         <!-- <li><a ng-click="ctrl.getAllEvents();" href="/events">Search Events</a></li> -->
+         <li><a ng-click="ctrl.logout()">Log Out</a></li>
+         <!-- <a href="#" ng-click="ctrl.logout()">Log Out</a> -->
+
        </ul>
      </div>
    </div>
