@@ -2,14 +2,44 @@
 <html ng-app="MyApp">
     <head>
         <meta charset="utf-8">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 
         <script src="app.js" charset="utf-8"></script>
 
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="main.css">
+
+        
         <title></title>
     </head>
     <body ng-controller="mainController as ctrl">
+
+        <!-- Main nav starts -->
+ <div class="navbar navbar-inverse navbar-static-top">
+   <div class="container">
+     <a ng-click="ctrl.getSports()" href="/">
+       <img class="logo" src="https://www.freelogoservices.com/api/main/images/1j+ojl1FOMkX9WypfBe43D6kjPGIpRVJkBnJwXs1M3EMoAJtlCkrgvBu9fg..." class="navbar-brand">
+     </a>
+     <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+     </button>
+     <div class="collapse navbar-collapse navHeaderCollapse">
+       <ul class ="nav navbar-nav navbar-right">
+         <!-- <li><a ng-click="ctrl.getAllEvents();" href="/events">Search Events</a></li> -->
+       </ul>
+     </div>
+   </div>
+ </div>
+   <!--Main nav ends  -->
+
 
         <!-- Partials -->
         <ng-view></ng-view>

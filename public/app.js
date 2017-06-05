@@ -15,6 +15,8 @@ app.controller('mainController', ['$http', function($http){
     this.message = "angular works!";
     this.selected_partial = 'index';
     this.review = ""
+    this.allTheStars = 0;
+    this.rating = 0;
     this.reloadPage = function(){
         $window.location.reload();
     }
@@ -22,7 +24,7 @@ app.controller('mainController', ['$http', function($http){
     var controller = this;
 
     this.login = function(userPass) {
-        console.log(userPass);
+
         $http({
             method: 'POST',
             url: DB_URL + '/users/login',
@@ -118,15 +120,20 @@ app.controller('mainController', ['$http', function($http){
         data: {
             content: controller.createreview.content,
             restaurant_id: restaurant_id,
-            user_id: userid
+            user_id: userid,
+            stars: controller.createreview.stars
         },
         headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
         }
     }).then(function(response){//success
       //this also might be a set to the userid so we probably can get rid of one or the other
+            controller.allTheStars = 0;
+            controller.rating = 0;
             controller.id = response.data.id;
             console.log(response);
+            controller.getSpecificRestaurant(restaurant_id);
+            controller.averageStars(restaurant_id)
             controller.getAllReviews(restaurant_id)
         },
       function(response) {//failure
@@ -139,12 +146,47 @@ app.controller('mainController', ['$http', function($http){
         method: 'GET',
         url: DB_URL + '/users/restaurants/' + id + '/reviews',
     }).then(function(result){
-        console.log(result);
+
         controller.reviews = result.data
-        console.log("===============");
+
         console.log(controller.reviews);
         controller.selected_partial = 'restaurantshowpage'
-    });
+        for(i=0; i < controller.reviews.length; i++){
+            controller.allTheStars = controller.allTheStars + controller.reviews[i].stars;
+            console.log(controller.reviews[i].stars);
+            console.log(controller.allTheStars);
+        }
+        controller.rating = controller.allTheStars / controller.reviews.length;
+        console.log(controller.allTheStars);
+        console.log(controller.rating);
+        controller.averageStars(id);
+        controller.rating = 0;
+
+        });
+    };
+
+    this.averageStars = function(id) {
+        $http({
+            method: 'PUT',
+            url: DB_URL + '/users/restaurants/' + id,
+            data: {
+                avgstars: controller.rating
+            }
+        }).then(function(result){
+            console.log(result);
+            console.log(controller);
+        })
+    };
+
+    this.getAllReviewsRefresh = function(id) {
+    $http({
+        method: 'GET',
+        url: DB_URL + '/users/restaurants/' + id + '/reviews',
+    }).then(function(result){
+
+        controller.reviews = result.data
+
+        });
     };
 
     this.removeReview = function(restaurant_id, review_id){
@@ -153,9 +195,20 @@ app.controller('mainController', ['$http', function($http){
             url: DB_URL + '/users/restaurants/' + restaurant_id + '/reviews/' + review_id,
         }).then(function(result){
             console.log('deleting');
-            controller.getAllReviews();
+            controller.rating = 0;
+            controller.allTheStars = 0;
+            controller.getAllReviewsRefresh(restaurant_id);
+            controller.getSpecificRestaurant(restaurant_id);
+            controller.getAllReviews(restaurant_id)
+            controller.getSpecificRestaurant(restaurant_id);
+
+
         })
-    }
+    };
+
+
+
+
 
 
 
